@@ -1,0 +1,33 @@
+server:
+  port: 8200
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: 28200
+  registry:
+    address: spring-cloud://localhost
+  consumer:
+    check: false
+    # 调用超时，单位是毫秒
+    timeout: 10000
+  cloud:
+    subscribed-services: book-service,person-service
+
+spring:
+  application:
+    name: manage
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: cloud
+
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring-dev.xml
+common:
+  logDir: D:\logs\alibaba-dubbo\${spring.application.name}\
+
+swagger:
+  enable: true

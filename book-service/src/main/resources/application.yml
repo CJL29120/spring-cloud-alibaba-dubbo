@@ -1,0 +1,32 @@
+server:
+  port: 8210
+
+dubbo:
+  scan:
+    base-packages: com.chen.manage.bookservice.serviceimpl
+  protocol:
+    name: dubbo
+    port: 28210
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: ''
+  consumer:
+    check: false
+    # 调用超时，单位是毫秒
+    timeout: 10000
+
+spring:
+  application:
+    name: book-service
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    include: db,cloud
+
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring-dev.xml
+common:
+  logDir: d:\logs\alibaba-dubbo\${spring.application.name}
